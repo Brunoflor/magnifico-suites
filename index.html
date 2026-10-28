@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Magnifico Suites — Guida per gli ospiti</title>
+    <meta
+      name="description"
+      content="Libro di benvenuto digitale per gli ospiti di Magnifico Suites, a Roma."
+    />
+    <meta name="theme-color" content="#F7F4F1" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="icons/logo.svg?v=20261028a" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;600&family=Noto+Sans+Arabic:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+JP:wght@500;600&family=Noto+Serif+SC:wght@500;600&family=Outfit:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20261028a" />
+    <script>
+      window.MAGNIFICO_VERSION = "20261028a";
+      (function () {
+        var codes = { it: 1, en: 1, es: 1, fr: 1, de: 1, pt: 1, zh: 1, ja: 1, ar: 1 };
+        function match(tag) {
+          var value = String(tag || "").toLowerCase();
+          if (value.indexOf("zh") === 0) return "zh";
+          var base = value.split("-")[0];
+          return codes[base] ? base : "";
+        }
+        var lang = "it";
+        try {
+          var saved = localStorage.getItem("magnifico-suites-lang");
+          if (codes[saved]) {
+            lang = saved;
+          } else {
+            var list = navigator.languages && navigator.languages.length
+              ? navigator.languages
+              : [navigator.language || "it"];
+            for (var i = 0; i < list.length; i++) {
+              var hit = match(list[i]);
+              if (hit) {
+                lang = hit;
+                break;
+              }
+            }
+          }
+        } catch (e) {
+          lang = "it";
+        }
+        var root = document.documentElement;
+        root.lang = lang;
+        root.dir = lang === "ar" ? "rtl" : "ltr";
+        root.dataset.lang = lang;
+        try {
+          var seen = sessionStorage.getItem("magnifico-suites-intro") === "1";
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (seen || reduceMotion) root.classList.add("intro-seen");
+        } catch (e) {
+          /* private mode */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="intro" class="intro" aria-hidden="true">
+      <img
+        id="intro-logo"
+        class="intro-logo"
+        src="icons/logo.svg?v=20261028a"
+        alt=""
+        width="346"
+        height="260"
+        fetchpriority="high"
+        draggable="false"
+      />
+      <p id="intro-title" class="intro-title"></p>
+    </div>
+    <noscript>
+      <style>
+        #intro { display: none; }
+        html:not(.intro-seen) .logo { visibility: visible; }
+      </style>
+    </noscript>
+    <div class="wrap">
+      <a class="skip" id="skip" href="#sections">Vai alle sezioni</a>
+      <header class="site-header">
+        <div class="header-bar">
+          <div id="lang-switch" class="lang"></div>
+        </div>
+        <h1 class="logo-lockup">
+          <img
+            class="logo"
+            src="icons/logo.svg?v=20261028a"
+            alt="Magnifico Suites"
+            width="346"
+            height="260"
+          />
+        </h1>
+        <p id="tagline" class="tagline"></p>
+      </header>
+      <main>
+        <noscript>
+          <p class="noscript">
+            Attiva JavaScript per usare la guida. Enable JavaScript to use the guide.
+          </p>
+        </noscript>
+        <figure class="hero">
+          <img
+            id="hero"
+            src="images/room-window.jpg?v=20261028a"
+            alt="Magnifico Suites"
+            width="1600"
+            height="1067"
+            fetchpriority="high"
+          />
+        </figure>
+        <div id="sections" tabindex="-1"></div>
+        <footer class="site-footer">
+          <p id="home-address" class="home-address"></p>
+          <p id="cin" class="cin"></p>
+          <p id="site-link" class="site-link"></p>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="sheet" class="sheet" aria-labelledby="sheet-title">
+      <div class="sheet-panel">
+        <div class="sheet-bar">
+          <button type="button" class="back" id="sheet-back">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 5 8 12l7 7" />
+            </svg>
+            <span id="back-label">Indietro</span>
+          </button>
+          <div id="sheet-lang" class="lang"></div>
+          <h2 id="sheet-title" class="sheet-title"></h2>
+        </div>
+        <div id="sheet-body" class="sheet-body"></div>
+      </div>
+    </dialog>
+    <p id="live" class="visually-hidden" aria-live="polite"></p>
+
+    <script src="content.js?v=20261028a"></script>
+    <script src="app.js?v=20261028a"></script>
+  </body>
+</html>
