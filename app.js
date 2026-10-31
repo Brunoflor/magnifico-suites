@@ -106,6 +106,22 @@
     if (!version) return path;
     return path + (path.indexOf("?") === -1 ? "?v=" : "&v=") + version;
   }
+  function iconPicture(name, className, size) {
+    var picture = document.createElement("picture");
+    picture.className = className;
+    var source = document.createElement("source");
+    source.type = "image/webp";
+    source.srcset = asset("icons/" + name + ".webp");
+    var img = document.createElement("img");
+    img.alt = "";
+    img.src = asset("icons/" + name + ".png");
+    img.width = size;
+    img.height = size;
+    img.decoding = "async";
+    picture.appendChild(source);
+    picture.appendChild(img);
+    return picture;
+  }
   function el(tag, className, textValue) {
     var node = document.createElement(tag);
     if (className) node.className = className;
@@ -287,13 +303,7 @@
       node.href = opts.href;
       if (opts.external) ext(node);
     } else node.type = "button";
-    var img = document.createElement("img");
-    img.className = "q-ico";
-    img.alt = "";
-    img.src = asset("icons/" + opts.icon + ".webp");
-    img.width = 40;
-    img.height = 40;
-    node.appendChild(img);
+    node.appendChild(iconPicture(opts.icon, "q-ico", 64));
     node.appendChild(el("span", "q-l", opts.label));
     var value = el("span", "q-v" + (opts.small ? " small" : ""), opts.value);
     if (opts.ltr) value.dir = "ltr";
@@ -384,13 +394,7 @@
       button.setAttribute("aria-controls", "sheet");
       button.setAttribute("aria-expanded", state.openId === section.id ? "true" : "false");
       var face = el("span", "tile-face");
-      var img = document.createElement("img");
-      img.className = "tile-glyph";
-      img.src = asset("icons/" + section.icon + ".webp");
-      img.alt = "";
-      img.width = 80;
-      img.height = 80;
-      face.appendChild(img);
+      face.appendChild(iconPicture(section.icon, "tile-glyph", 128));
       if (isComingSoon(section)) {
         button.classList.add("is-soon");
         var dot = el("span", "tile-dot");
@@ -423,13 +427,7 @@
   function renderSoon(section, quiet) {
     var wrap = el("div", quiet ? "soon soon-quiet" : "soon");
     if (!quiet) {
-      var img = document.createElement("img");
-      img.className = "soon-mark";
-      img.src = asset("icons/" + section.icon + ".webp");
-      img.alt = "";
-      img.width = 88;
-      img.height = 88;
-      wrap.appendChild(img);
+      wrap.appendChild(iconPicture(section.icon, "soon-mark", 160));
     }
     wrap.appendChild(el("p", "soon-title", t("comingSoon")));
     wrap.appendChild(el("p", "soon-text", t("comingSoonBody")));
