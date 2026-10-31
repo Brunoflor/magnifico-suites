@@ -8,19 +8,26 @@
       name="description"
       content="Libro di benvenuto digitale per gli ospiti di Magnifico Suites, a Roma."
     />
-    <meta name="theme-color" content="#F7F4F1" />
+    <meta name="theme-color" content="#2F3E52" />
     <meta name="color-scheme" content="light" />
+    <meta name="ms-version" content="20261031a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Magnifico" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="preload" as="image" href="icons/logo.svg?v=20261028a" fetchpriority="high" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preload" as="image" href="icons/logo.svg?v=20261031a" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;600&family=Noto+Sans+Arabic:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+JP:wght@500;600&family=Noto+Serif+SC:wght@500;600&family=Outfit:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20261028a" />
+    <link rel="stylesheet" href="styles.css?v=20261031a" />
     <script>
-      window.MAGNIFICO_VERSION = "20261028a";
+      window.MAGNIFICO_VERSION = "20261031a";
       (function () {
         var codes = { it: 1, en: 1, es: 1, fr: 1, de: 1, pt: 1, zh: 1, ja: 1, ar: 1 };
         function match(tag) {
@@ -60,89 +67,120 @@
         } catch (e) {
           /* private mode */
         }
+        root.classList.add("js");
       })();
     </script>
   </head>
   <body>
     <div id="intro" class="intro" aria-hidden="true">
-      <img
-        id="intro-logo"
-        class="intro-logo"
-        src="icons/logo.svg?v=20261028a"
-        alt=""
-        width="346"
-        height="260"
-        fetchpriority="high"
-        draggable="false"
-      />
-      <p id="intro-title" class="intro-title"></p>
+      <div class="intro-inner">
+        <img
+          id="intro-logo"
+          class="intro-logo"
+          src="icons/logo.svg?v=20261031a"
+          alt=""
+          width="346"
+          height="260"
+          fetchpriority="high"
+          draggable="false"
+        />
+        <p id="intro-title" class="intro-title"></p>
+        <p id="intro-name" class="intro-name"></p>
+      </div>
     </div>
     <noscript>
       <style>
         #intro { display: none; }
-        html:not(.intro-seen) .logo { visibility: visible; }
+        html:not(.intro-seen) .hero-logo { visibility: visible; }
       </style>
     </noscript>
-    <div class="wrap">
-      <a class="skip" id="skip" href="#sections">Vai alle sezioni</a>
-      <header class="site-header">
-        <div class="header-bar">
-          <div id="lang-switch" class="lang"></div>
-        </div>
-        <h1 class="logo-lockup">
+
+    <a class="skip" id="skip" href="#sections">Vai alle sezioni</a>
+
+    <header class="hero">
+      <div class="hero-bar">
+        <div id="lang-home" class="lang"></div>
+      </div>
+      <div class="hero-main">
+        <h1 class="hero-logo-wrap">
           <img
-            class="logo"
-            src="icons/logo.svg?v=20261028a"
+            class="hero-logo"
+            src="icons/logo.svg?v=20261031a"
             alt="Magnifico Suites"
             width="346"
             height="260"
           />
         </h1>
-        <p id="tagline" class="tagline"></p>
-      </header>
-      <main>
-        <noscript>
-          <p class="noscript">
-            Attiva JavaScript per usare la guida. Enable JavaScript to use the guide.
-          </p>
-        </noscript>
-        <figure class="hero">
-          <img
-            id="hero"
-            src="images/room-window.jpg?v=20261028a"
-            alt="Magnifico Suites"
-            width="1600"
-            height="1067"
-            fetchpriority="high"
-          />
-        </figure>
-        <div id="sections" tabindex="-1"></div>
-        <footer class="site-footer">
-          <p id="home-address" class="home-address"></p>
-          <p id="cin" class="cin"></p>
-          <p id="site-link" class="site-link"></p>
-        </footer>
-      </main>
-    </div>
+        <p class="hero-eyebrow" id="hero-eyebrow"></p>
+        <p class="hero-name" id="hero-name"></p>
+        <a class="hero-address" id="hero-address" href="#"></a>
+        <div class="hero-times" id="hero-times" hidden></div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="quick" class="band"></section>
+      <section id="gallery" class="band"></section>
+      <section id="sections" class="band guide" tabindex="-1"></section>
+    </main>
+
+    <footer class="footer">
+      <img class="footer-line" src="icons/rome-line.svg?v=20261031a" alt="" width="360" height="78" />
+      <div id="footer-body" class="footer-body"></div>
+    </footer>
+
+    <button type="button" id="to-top" class="to-top">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 12 7-7 7 7" />
+        <path d="M12 19V5" />
+      </svg>
+    </button>
 
     <dialog id="sheet" class="sheet" aria-labelledby="sheet-title">
       <div class="sheet-panel">
+        <div class="sheet-handle" aria-hidden="true"></div>
         <div class="sheet-bar">
           <button type="button" class="back" id="sheet-back">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="flip" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M15 5 8 12l7 7" />
             </svg>
             <span id="back-label">Indietro</span>
           </button>
-          <div id="sheet-lang" class="lang"></div>
           <h2 id="sheet-title" class="sheet-title"></h2>
+          <div id="lang-sheet" class="lang lang-compact"></div>
         </div>
-        <div id="sheet-body" class="sheet-body"></div>
+        <div class="sheet-scroll">
+          <div id="sheet-body" class="sheet-body"></div>
+        </div>
       </div>
     </dialog>
+
+    <dialog id="lightbox" class="lightbox" aria-labelledby="lb-cap">
+      <div class="lb-stage">
+        <img id="lb-img" alt="" />
+        <button type="button" id="lb-close" class="lb-btn lb-close">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <button type="button" id="lb-prev" class="lb-btn lb-prev">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 5 8 12l7 7" />
+          </svg>
+        </button>
+        <button type="button" id="lb-next" class="lb-btn lb-next">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 5 7 7-7 7" />
+          </svg>
+        </button>
+        <p id="lb-cap" class="lb-cap"></p>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status"></div>
     <p id="live" class="visually-hidden" aria-live="polite"></p>
 
-    <script src="content.js?v=20261028a"></script>
-    <script src="app.js?v=20261028a"></script>
+    <script src="content.js?v=20261031a"></script>
+    <script src="app.js?v=20261031a"></script>
   </body>
 </html>

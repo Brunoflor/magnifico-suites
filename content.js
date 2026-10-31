@@ -20,9 +20,11 @@
  * - `type: "directions"` — address, map button and optional `note`.
  *   Optional `routes`, same shape as a journey card: `id`, `icon`, `title`,
  *   `text`, `mapsUrl`. Leave `routes` empty until the details are checked.
- * - `gallery: true` shows the photos listed in `photos` (used by the rooms).
- *   The first photo is also the picture on the home page. Keep the same file
- *   in index.html (`images/room-window.jpg`).
+ * - `photos` is the home gallery (WebP). Each item has `src`, `width`, `height`
+ *   and `alt` (one field per language). Tapping a photo opens the lightbox.
+ * - `property.checkin` and `property.checkout` are optional clock times.
+ *   Add them only when they are confirmed. If either is missing, the
+ *   check-in / check-out row under the address stays hidden.
  * - Only add details you have checked. Do not guess passwords, phone numbers,
  *   prices, distances or opening hours.
  * - After editing styles.css, app.js or content.js, bump the `?v=` version in
@@ -30,6 +32,7 @@
  */
 window.MAGNIFICO_CONTENT = {
   "property": {
+    "name": "Magnifico Suites",
     "addressLines": [
       "Via Lorenzo Il Magnifico",
       "148, A7",
@@ -48,7 +51,7 @@ window.MAGNIFICO_CONTENT = {
   },
   "photos": [
     {
-      "src": "images/room-window.jpg",
+      "src": "images/room-window.webp",
       "width": 1600,
       "height": 1067,
       "alt": {
@@ -64,7 +67,7 @@ window.MAGNIFICO_CONTENT = {
       }
     },
     {
-      "src": "images/room-desk.jpg",
+      "src": "images/room-desk.webp",
       "width": 1600,
       "height": 1067,
       "alt": {
@@ -80,7 +83,7 @@ window.MAGNIFICO_CONTENT = {
       }
     },
     {
-      "src": "images/room-wardrobe.jpg",
+      "src": "images/room-wardrobe.webp",
       "width": 1600,
       "height": 1067,
       "alt": {
@@ -93,6 +96,22 @@ window.MAGNIFICO_CONTENT = {
         "zh": "带床、衣柜和电视的客房",
         "ja": "ベッド、クローゼット、テレビのある客室",
         "ar": "غرفة فيها سرير وخزانة وتلفاز"
+      }
+    },
+    {
+      "src": "images/forum.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": {
+        "it": "Foro Romano",
+        "en": "Roman Forum",
+        "es": "Foro Romano",
+        "fr": "Forum romain",
+        "de": "Forum Romanum",
+        "pt": "Fórum Romano",
+        "zh": "古罗马广场",
+        "ja": "フォロ・ロマーノ",
+        "ar": "المنتدى الروماني"
       }
     }
   ],
@@ -140,6 +159,127 @@ window.MAGNIFICO_CONTENT = {
       "zh": "欢迎手册",
       "ja": "ウェルカムブック",
       "ar": "كتاب الترحيب"
+    },
+    "photos": {
+      "it": "Foto",
+      "en": "Photos",
+      "es": "Fotos",
+      "fr": "Photos",
+      "de": "Fotos",
+      "pt": "Fotos",
+      "zh": "照片",
+      "ja": "写真",
+      "ar": "الصور"
+    },
+    "guide": {
+      "it": "Guida",
+      "en": "Guide",
+      "es": "Guía",
+      "fr": "Guide",
+      "de": "Guide",
+      "pt": "Guia",
+      "zh": "指南",
+      "ja": "ガイド",
+      "ar": "الدليل"
+    },
+    "tapHint": {
+      "it": "Tocca un'icona",
+      "en": "Tap an icon",
+      "es": "Toca un icono",
+      "fr": "Touchez une icône",
+      "de": "Tippen Sie auf ein Symbol",
+      "pt": "Toque num ícone",
+      "zh": "点按图标",
+      "ja": "アイコンをタップ",
+      "ar": "انقر على أيقونة"
+    },
+    "toTop": {
+      "it": "Torna su",
+      "en": "Back to top",
+      "es": "Volver arriba",
+      "fr": "Haut de page",
+      "de": "Nach oben",
+      "pt": "Voltar ao topo",
+      "zh": "回到顶部",
+      "ja": "ページ上部へ",
+      "ar": "العودة إلى الأعلى"
+    },
+    "close": {
+      "it": "Chiudi",
+      "en": "Close",
+      "es": "Cerrar",
+      "fr": "Fermer",
+      "de": "Schließen",
+      "pt": "Fechar",
+      "zh": "关闭",
+      "ja": "閉じる",
+      "ar": "إغلاق"
+    },
+    "prev": {
+      "it": "Precedente",
+      "en": "Previous",
+      "es": "Anterior",
+      "fr": "Précédente",
+      "de": "Zurück",
+      "pt": "Anterior",
+      "zh": "上一张",
+      "ja": "前へ",
+      "ar": "السابق"
+    },
+    "next": {
+      "it": "Successiva",
+      "en": "Next",
+      "es": "Siguiente",
+      "fr": "Suivante",
+      "de": "Weiter",
+      "pt": "Seguinte",
+      "zh": "下一张",
+      "ja": "次へ",
+      "ar": "التالي"
+    },
+    "openPhoto": {
+      "it": "Apri la foto",
+      "en": "Open photo",
+      "es": "Abrir la foto",
+      "fr": "Ouvrir la photo",
+      "de": "Foto öffnen",
+      "pt": "Abrir a foto",
+      "zh": "打开照片",
+      "ja": "写真を開く",
+      "ar": "فتح الصورة"
+    },
+    "copied": {
+      "it": "Copiato",
+      "en": "Copied",
+      "es": "Copiado",
+      "fr": "Copié",
+      "de": "Kopiert",
+      "pt": "Copiado",
+      "zh": "已复制",
+      "ja": "コピーしました",
+      "ar": "تم النسخ"
+    },
+    "checkinLabel": {
+      "it": "Check-in",
+      "en": "Check-in",
+      "es": "Check-in",
+      "fr": "Check-in",
+      "de": "Check-in",
+      "pt": "Check-in",
+      "zh": "入住",
+      "ja": "チェックイン",
+      "ar": "تسجيل الوصول"
+    },
+    "checkoutLabel": {
+      "it": "Check-out",
+      "en": "Check-out",
+      "es": "Check-out",
+      "fr": "Check-out",
+      "de": "Check-out",
+      "pt": "Check-out",
+      "zh": "退房",
+      "ja": "チェックアウト",
+      "ar": "تسجيل المغادرة"
     },
     "languageLabel": {
       "it": "Lingua",
@@ -391,7 +531,6 @@ window.MAGNIFICO_CONTENT = {
         "ar": "الغرف"
       },
       "type": "places",
-      "gallery": true,
       "items": [
         {
           "name": {
