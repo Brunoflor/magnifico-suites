@@ -290,7 +290,7 @@
     var img = document.createElement("img");
     img.className = "q-ico";
     img.alt = "";
-    img.src = asset("icons/" + opts.icon + ".svg");
+    img.src = asset("icons/" + opts.icon + ".webp");
     img.width = 40;
     img.height = 40;
     node.appendChild(img);
@@ -386,7 +386,7 @@
       var face = el("span", "tile-face");
       var img = document.createElement("img");
       img.className = "tile-glyph";
-      img.src = asset("icons/" + section.icon + ".svg");
+      img.src = asset("icons/" + section.icon + ".webp");
       img.alt = "";
       img.width = 80;
       img.height = 80;
@@ -425,7 +425,7 @@
     if (!quiet) {
       var img = document.createElement("img");
       img.className = "soon-mark";
-      img.src = asset("icons/" + section.icon + ".svg");
+      img.src = asset("icons/" + section.icon + ".webp");
       img.alt = "";
       img.width = 88;
       img.height = 88;
